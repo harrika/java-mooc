@@ -88,11 +88,15 @@ public class CaesarCipher {
     }
     
      public void testencryptTwoKeys(){
-        int key1 = 8;
-        int key2 = 21;        
-        FileResource fr = new FileResource();
-        String message = fr.asString();
-        String enc = encryptTwoKeys(message, key1, key2);        
+        int key1 = 2;
+        int key2 = 20;  
+        int akey1 = 26-key1;
+        int akey2 = 26-key2;
+        
+        //FileResource fr = new FileResource();
+        //String message = fr.asString();
+        String message = "Top ncmy qkff vi vguv vbg ycpx";
+        String enc = encryptTwoKeys(message, akey1, akey2);        
         System.out.println("message:  "+message);     
         System.out.println("encrypted message: "+enc);
         
