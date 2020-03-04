@@ -87,10 +87,10 @@ public class CaesarCipher2 {
         return decryp2d;
     } 
      
-    public void testdecrypt2key(){  
-        //String xx = decrypt2key("Akag tjw Xibhr awoa aoee xakex znxag xwko");
+    public void testdecrypt2key(){          
         FileResource fr = new FileResource();
-        String message = fr.asString();        
+        String message = fr.asString();       
+        //String message = "Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!";        
         String xx = decrypt2key(message);
         System.out.println(xx);
     }

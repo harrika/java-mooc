@@ -78,27 +78,28 @@ public class CaesarCipher {
     //==testing =======================================
     public void testCaesar(){
         int ke = 15;
-        FileResource fr = new FileResource();
-        String message = fr.asString();
+        //FileResource fr = new FileResource();
+        //String message = fr.asString();
+        String message = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
         String encrypted = encrypt(message, ke);        
         System.out.println("message:  "+message);
-        System.out.println("key is: "+ ke);
+        //System.out.println("key is: "+ ke);
         System.out.println("encrypted message: "+encrypted);
         
     }
     
      public void testencryptTwoKeys(){
-        int key1 = 2;
-        int key2 = 20;  
+        int key1 = 14;
+        int key2 = 24;  
         int akey1 = 26-key1;
         int akey2 = 26-key2;
         
         //FileResource fr = new FileResource();
-        //String message = fr.asString();
-        String message = "Top ncmy qkff vi vguv vbg ycpx";
+        String message = "Hfs cpwewloj loks cd Hoto kyg Cyy";
+        //String message = " Can you imagine life WITHOUT the internet AND computers in your pocket?";
         String enc = encryptTwoKeys(message, akey1, akey2);        
         System.out.println("message:  "+message);     
-        System.out.println("encrypted message: "+enc);
+        System.out.println("dencrypted message: "+enc);
         
     }
     
