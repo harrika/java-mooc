@@ -14,7 +14,8 @@ public class WordsInFiles {
         ArrayList<String> filo;
         FileResource resource = new FileResource(f);
         String ff = f.getName();
-        for(String wrd : resource.words()){ //for wrd in file f         
+        for(String wrd : resource.words()){ //for wrd in file f   
+            //String wrd = teststring(wd); //testing word for non alpahabeticals at the end            
             if (mapp.keySet().contains(wrd)) {            
                 filo = mapp.get(wrd); //get the associated fiel array
                 filo.add(ff); //add file f to filo       
@@ -26,6 +27,48 @@ public class WordsInFiles {
          mapp.put(wrd,filo);
         }
     }
+    
+    // ======== baby file1 file2
+    
+        
+    public String teststring(String mess){
+        String newc = "";
+        //String mess = "abcdefqrstuvwxyz!";
+        //for (int k=0; k<mess.length(); k++){
+            int k = mess.length()-1;
+            //System.out.println(mess.charAt(k));
+            char ch = mess.charAt(k);
+            //System.out.println(ch);
+            boolean bb = Character.isLetter(ch);
+            if (!bb){
+                //newc = substring(0,k);
+                newc = mess.substring(0, k);
+                return newc;
+            }else{
+                return mess;
+            }
+            //System.out.println(mess);
+            //System.out.println("newc: "+newc);  
+            //return newc;
+        //}
+    }
+    
+    
+     public void testmenee(){ 
+         buildWordFileMap();   
+         int mm = 0;
+         int n4 = 0;
+         for (String ww: mapp.keySet()){
+             int ss = mapp.get(ww).size(); 
+             if (ss == 4){
+                 n4 += 1;
+             }
+             //mm = mm+1;
+         }
+         //System.out.println("number words: "+mm);
+         System.out.println("number in 4 files: "+n4);
+    }
+      
     
     public void buildWordFileMap(){   
         mapp.clear();
@@ -59,7 +102,34 @@ public class WordsInFiles {
         return wards;
     }     
     
-    public void tester(){   
+    public void tester2sea(){  
+        mapp.clear();
+        ArrayList<String> aray = new ArrayList<String>();
+        buildWordFileMap();          
+        aray = mapp.get("tree");             
+        for (String el : aray) {          
+           System.out.println(el);      
+       }
+    }
+    
+     public void tester3(){  
+        ArrayList<String> filz;
+        int hwmany = 0;
+        buildWordFileMap();                      
+        for (String wd : mapp.keySet()) {               
+           int nn = mapp.get(wd).size();
+           if(nn == 4 ){
+               System.out.println(wd);
+               hwmany += 1; 
+               //dwords.add(wd)
+            }           
+       }
+       System.out.println("how many words for 4 files: "+hwmany);       
+    }
+        
+        
+        
+     public void tester(){   
         buildWordFileMap();   
         int maxnum = maxNumber();
         ArrayList<String> fill;

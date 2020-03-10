@@ -29,6 +29,25 @@ public class CaesarCipher2 {
         return counts;
     }
     
+    public void teststring(){
+        String newc = "";
+        String mess = "abcdefqrstuvwxyz!";
+        //for (int k=0; k<mess.length(); k++){
+            int k = mess.length()-1;
+            //System.out.println(mess.charAt(k));
+            char ch = mess.charAt(k);
+            System.out.println(ch);
+            boolean bb = Character.isLetter(ch);
+            if (!bb){
+                //newc = substring(0,k);
+                newc = mess.substring(0, k);
+            }
+            System.out.println(mess);
+            System.out.println("newc: "+newc);            
+        //}
+    }
+    
+    
      public int maxIndex(int[] values){
         int mx = 0;
         int pos = 0;

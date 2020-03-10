@@ -44,18 +44,15 @@ public class Codon {
     private void printCodonCounts(int start, int end) {
         for (String cod : codons.keySet()){
             int codcnt = codons.get(cod); 
-            if ((codcnt>=start) && (codcnt <=end)){
-                System.out.println(cod+" ==> "+codcnt); 
+            //if ((codcnt>=start) && (codcnt <=end)){
+            if (codcnt == 7){
+                System.out.println(cod+" 7 counts==> "+codcnt); 
                 //System.out.println(cod+" === "+cod.charAt(2));      
             }     
         }
     }
     
-    public void testprintCodonCounts() {        
-        testbuildCodonMap();
-        printCodonCounts(0,4);    
-    }  
-    
+   
     public void testbuildCodonMap() {
         codons.clear();
         buildCodonMap(0, "CTTGAGGAGGAGFSSFSSFSSFSSDHJHGT");    
@@ -83,7 +80,7 @@ public class Codon {
             }
             System.out.println("uniq codons in map: " + uniq);
             String comcod = getMostCommonCodon(); 
-            int comcodcnt = codons.get(comcod); 
+            int comcodcnt = codons.get(comcod);                
             System.out.println("most common codon: "+comcod+"--> "+comcodcnt); 
             System.out.println("codon in range"); 
             printCodonCounts(0,4);           
