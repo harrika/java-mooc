@@ -51,16 +51,59 @@ public class Tester
     
     public void testtryKeyLength() {        
         VigenereBreaker vbr = new VigenereBreaker();       
-        int[] ky = new int[4];
+        int[] ky = new int[38];
         FileResource fr = new FileResource();
         String encmessage = fr.asString(); 
-        ky = vbr.tryKeyLength(encmessage, 4, 'e');                    
+        ky = vbr.tryKeyLength(encmessage, 38, 'e');                    
         }
         
     public void testbreakVigenere(){
          VigenereBreaker vbr = new VigenereBreaker(); 
          vbr.breakVigenere();         
     }
+          
+    public void testcountWords(){
+        VigenereBreaker vbr = new VigenereBreaker();     
+        String messg = "This is a sample sentence with []s, and I, jut going to make it longer now";
+        FileResource frdic = new FileResource();
+        HashSet<String> dic = vbr.readDictionary(frdic);                
+        int cnt = vbr.countWords (messg, dic);        
+        System.out.println("English words found:   "+cnt);                 
+    }
+    
+    public void testmostCommonCharIn(){
+        VigenereBreaker vbr = new VigenereBreaker();     
+        FileResource frdic = new FileResource();
+        HashSet<String> dic = vbr.readDictionary(frdic);
+        Character commn = vbr.mostCommonCharIn(dic);
+        System.out.println("most comon character tested: "+commn); 
+    }
+    
+   
+     public void testbreakForAllLangs(){
+         VigenereBreaker vbr = new VigenereBreaker();           
+         HashMap<String, HashSet<String>> languages = new HashMap<String, HashSet<String>>();
+         ArrayList<String> langlist = new ArrayList<String>(); //creating list of languages
+         langlist.add("Danish");
+         langlist.add("Dutch");
+         langlist.add("English");
+         langlist.add("French");
+         langlist.add("German");
+         langlist.add("Italian");
+         langlist.add("Portuguese");
+         langlist.add("Spanish");
+         
+         System.out.println("Select encrypted file");  
+         FileResource fr = new FileResource();
+         String encd = fr.asString();                  
+         for (String lang : langlist) {
+            System.out.println("select dictionary for language: "+lang);  
+            FileResource frdict = new FileResource(); //getting dictionary
+            HashSet<String> dict = vbr.readDictionary(frdict);
+            languages.put(lang, dict);
+        }
+         vbr.breakForAllLangs(encd, languages);
+        }
     
     
 } //main class
