@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=EarthQuakeClient2
+comment1.params=quakedata\ f1\ f2
+comment1.target=java.util.ArrayList\ quakesWithFilter(java.util.ArrayList,\ Filter,\ Filter)
+comment2.params=
+comment2.target=void\ testfiltered2()
+numComments=3

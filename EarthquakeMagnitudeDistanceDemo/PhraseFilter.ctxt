@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=PhraseFilter
+comment0.text=henry\ kirya
+comment1.params=where\ frez
+comment1.target=PhraseFilter(java.lang.String,\ java.lang.String)
+comment2.params=qe
+comment2.target=boolean\ satisfies(QuakeEntry)
+numComments=3
