@@ -58,7 +58,7 @@ public class EarthQuakeClient {
         //String source = "data/nov20quakedatasmall.atom"; 
         String source = "data/nov20quakedata.atom";  
         ArrayList<QuakeEntry> list = parser.read(source);        
-        ArrayList<QuakeEntry> list2 = filterByPhrase(list, "any", "Creek");
+        ArrayList<QuakeEntry> list2 = filterByPhrase(list, "any", "Can");
         
         System.out.println("read data for "+list.size()+" quakes"); 
         System.out.println("finding quakes of phrase");                 
@@ -75,9 +75,9 @@ public class EarthQuakeClient {
         //String source = "data/nov20quakedatasmall.atom";
         String source = "data/nov20quakedata.atom";    //nov20quakedata
         ArrayList<QuakeEntry> list = parser.read(source);
-        ArrayList<QuakeEntry> deep = filterByDepth(list, -10000.0, -8000.0);
+        ArrayList<QuakeEntry> deep = filterByDepth(list, -4000.0, -2000.0);
         System.out.println("read data for "+list.size()+" quakes"); 
-        System.out.println("finding qualed of depth between -10000.0 and -8000.0");                 
+        System.out.println("finding quakes of depth between -12000.0, -10000.0");
         for (int i=0; i<deep.size(); i++) {
             QuakeEntry entry = deep.get(i);         
             System.out.println(entry.getInfo());
@@ -101,24 +101,30 @@ public class EarthQuakeClient {
     }
     
     public void bigQuakes() {
-        EarthQuakeParser parser = new EarthQuakeParser();
-        //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        //String source = "data/nov20quakedata.atom";
-        String source = "data/nov20quakedatasmall.atom";         
+        EarthQuakeParser parser = new EarthQuakeParser();       
+        String source = "data/nov20quakedata.atom";         
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("read data for " + list.size() + " quakes");
-        /*
-        for (QuakeEntry qe : list) {
-            if (qe.getMagnitude() > 5.0) {
-                System.out.println(qe);
-            }
-        }
-        */
         ArrayList<QuakeEntry> listBig5 = filterByMagnitude(list, 5.0);
         for (QuakeEntry qe : listBig5) {
            System.out.println(qe); 
         }
         System.out.println("big data size: " + listBig5.size() + " quakes");
+    }
+    
+     
+    public void findlargest() {     
+        int ind = 1;
+        LargestQuakes lg = new LargestQuakes(); 
+        EarthQuakeParser parser = new EarthQuakeParser(); 
+        String source = "data/nov20quakedata.atom";         
+        ArrayList<QuakeEntry> list = parser.read(source); 
+        ArrayList<QuakeEntry> large50 = lg.getLargest(list, 50);
+        for (QuakeEntry ee: large50){
+            System.out.print(ind+": ");
+            System.out.println(ee);
+            ind++;
+        }
     }
     
     public void createCSV(){
@@ -131,16 +137,10 @@ public class EarthQuakeClient {
     }
     
     public void closeToMe() {
-        EarthQuakeParser parser = new EarthQuakeParser();
-        //String source = "data/nov20quakedata.atom";
-        String source = "data/nov20quakedatasmall.atom";    
-        //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
+        EarthQuakeParser parser = new EarthQuakeParser();        
+        String source = "data/nov20quakedatasmall.atom";     
         ArrayList<QuakeEntry> list = parser.read(source);
-        //System.out.println("# quakes read: " + list.size());
-        
-        //Durham, NC (35.988, -78.907) and Bridgeport, CA (38.17, -118.82).         
-        Location city = new Location(35.988, -78.907); //  //Durham, NC (35.988, -78.907)        
-        //Location city = new Location(38.17, -118.82); //Bridgeport, CA (38.17, -118.82).  
+        Location city = new Location(35.988, -78.907); //  //Durham, NC (35.988, -78.907)              
         ArrayList<QuakeEntry> close = filterByDistanceFrom(list, 1000*1000, city);
         for (int k=0; k< close.size(); k++) {
             QuakeEntry entry = close.get(k);

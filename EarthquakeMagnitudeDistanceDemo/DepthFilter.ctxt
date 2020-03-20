@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=DepthFilter
 comment0.text=henry\ kirya
-comment1.params=mindeep\ maxdeep
-comment1.target=DepthFilter(double,\ double)
+comment1.params=mindeep\ maxdeep\ name
+comment1.target=DepthFilter(double,\ double,\ java.lang.String)
 comment2.params=qe
 comment2.target=boolean\ satisfies(QuakeEntry)
-numComments=3
+comment3.params=
+comment3.target=java.lang.String\ getName()
+numComments=4

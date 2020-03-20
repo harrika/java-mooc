@@ -4,9 +4,12 @@ import edu.duke.*;
 public class PhraseFilter implements Filter {
     private String where;
     private String frez;
-    public PhraseFilter (String where, String frez){
-        where = where;
-        frez = frez;        
+    private String nem;
+    
+    public PhraseFilter (String place, String phrase, String name){
+        where = place;
+        frez = phrase;        
+        nem = name;
     }
     public boolean satisfies(QuakeEntry qe){
          String tt = qe.getInfo();   
@@ -14,6 +17,9 @@ public class PhraseFilter implements Filter {
          ((where=="end") && (tt.endsWith(frez))) ||
          ((where=="any") && (tt.contains(frez))));
          return gud;
-    }    
+    }  
+    public String getName(){
+        return nem;
+    }
 }
  

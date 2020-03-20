@@ -6,18 +6,20 @@ import edu.duke.*;
 //.getLocation().distanceTo(current)
 // double distanceInMeters = jakarta.distanceTo(entry.getLocation());
 
-public class DistanceFilter implements Filter {
+public class DistanceFilter2 implements Filter {
     private Location locn;
     private double mxdist;    
     private String nem;
-    public DistanceFilter (Location loc, double maxdist, String name){
+    public DistanceFilter2 (Location loc, double maxdist, String name){
         locn = loc;
         mxdist = maxdist;
         nem = name;
     }
     public boolean satisfies(QuakeEntry qe){
-        boolean tru = (qe.getLocation().distanceTo(locn) < mxdist);
-        //System.out.println(tru);
+        double dd = qe.getLocation().distanceTo(locn);
+        boolean tru = ((dd > mxdist-500000.0) &&
+                      (dd < mxdist+500000.0) );
+        System.out.println("dist to location: "+dd+" ----- "+tru);
         return tru;
     }
     public String getName(){

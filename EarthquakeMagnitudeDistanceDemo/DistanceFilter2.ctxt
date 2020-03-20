@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=MagnitudeFilter
+comment0.target=DistanceFilter2
 comment0.text=henry\ kirya
-comment1.params=minmag\ maxmag\ name
-comment1.target=MagnitudeFilter(double,\ double,\ java.lang.String)
+comment1.params=loc\ maxdist\ name
+comment1.target=DistanceFilter2(Location,\ double,\ java.lang.String)
 comment2.params=qe
 comment2.target=boolean\ satisfies(QuakeEntry)
 comment3.params=
