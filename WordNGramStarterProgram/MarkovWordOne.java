@@ -77,24 +77,6 @@ public class MarkovWordOne implements IMarkovModel {
             stat = ix+1;
         }        
         return follows;
-        }
-    
-    // private ArrayList<String> getFollows(String key) {
-        // ArrayList<String> follows = new ArrayList<String>();
-        // int stat = 0;        
-        // while(stat < myText.length){
-            // int ix = indexOf(myText,key,stat);
-            // if (ix == -1){
-                // break;
-            // }            
-            // if (ix+key.length() >= myText.length-1){
-                // break;
-            // }
-            // String nexter = myText[ix+1];
-            // follows.add(nexter);                                   
-            // stat = ix+key.length();
-        // }        
-        // return follows;
-        // }
+        }   
 
 }
