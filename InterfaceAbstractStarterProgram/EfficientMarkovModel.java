@@ -20,6 +20,8 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
     
     public void setTraining(String s){
         myText = s.trim();
+        buildMap();
+        printHashMapInfo();
     } 
     
     public void printHashMapInfo(){        
@@ -41,78 +43,32 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
             }
         }        
     }
-    
-    protected ArrayList<String> getfella(String key){
-        ArrayList<String> follow = new ArrayList<String>();          
-        int stat = 0;        
-        while(stat < myText.length()){
-            int ix = myText.indexOf(key, stat);
-            if (ix == -1){
-                break;
-            }            
-            if (ix+key.length() >= myText.length()-1){
-                break;
-            }
-            String nexter = myText.substring(ix+key.length(), ix+key.length()+1);
-            follow.add(nexter);                                   
-            stat = ix+key.length();
-        }
-        return follow;
-    }  
-    
-    // public ArrayList<String> getfella (String key){
-        // int slen = myText.length();
-        // int len = key.length();
-        // int stat = 0;
-        // ArrayList<String> follow = new ArrayList<String>();     
-        // int diff = myText.length() - key.length();
-        // while(stat < diff) {
-            // int ix = myText.indexOf(key, stat);
-            // if (ix<0){
-                // return follow;
-            // }
-            // int nxit = ix+len;
-            // if (nxit < slen) {
-                // String nexter = myText.substring(nxit, nxit+1);            
-                // follow.add(nexter);                                   
-            // }
-            // stat = nxit;
-        // }
-        // return follow;
-    // }  
-    
+      
      public void buildMap(){ 
-       bmap = new HashMap<String, ArrayList<String>>();
-       int stat = 0;       
-       while(stat < (myText.length()-n)){
-           String ke = myText.substring(stat, stat+n);
-           ArrayList<String> fello = getfella(ke);
-           if (!bmap.containsKey(ke) && (!fello.isEmpty())){
-               bmap.put(ke, fello);
-            }  
-            stat = stat+1;             
-        }   
-        printHashMapInfo();            
+       ArrayList<String> fol;
+       for(int k=0; k < myText.length()-n; k++){ 
+           String ke = myText.substring(k, k+n);
+           int nxtid = k+n;           
+           String nxt = myText.substring(nxtid, nxtid+1);
+            if(bmap.containsKey(ke)){                
+                fol = bmap.get(ke);
+                fol.add(nxt);
+                bmap.put(ke, fol);
+            }else{
+                fol = new ArrayList<String>();
+                fol.add(nxt);  
+                bmap.put(ke, fol);                
+            } 
+        }
      }
     
-  
     public String toString(){
          return "EfficientMarkovModel of order "+n;
     }
     
-    public ArrayList<String> getFollows2(String key){        
+    public ArrayList<String> getFollows(String key){        
         return bmap.get(key); 
-    }  
-     
-    public ArrayList<String> getFollows3(String key){          
-        if (bmap.containsKey(key)){
-            return bmap.get(key); 
-        }else{
-            ArrayList<String> fello = getfella(key);
-            bmap.put(key, fello);
-            return fello;
-        }        
-    }  
+    } 
            
     public String getRandomText(int numChars){     
         //buildMap();
@@ -121,7 +77,7 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
         String key = myText.substring(idx, idx+n);
         sb.append(key);        
         for(int k=0; k<numChars-n; k++){            
-            ArrayList<String> follos = getFollows3(key);                       
+            ArrayList<String> follos = getFollows(key);                       
             if (follos == null){    
                break;
             } 

@@ -26,7 +26,7 @@ public class Tester {
 	st = st.replace('\n', ' ');
 	MarkovOne markov = new MarkovOne();		
 	markov.setTraining(st);      
-	ret = markov.getFollows("th");
+	ret = markov.getFollows("he");
 	System.out.println("Number of followers: "+ret.size());    
     }	
     

@@ -27,6 +27,16 @@ public class WordGram {
         }
         return ret.trim();
     }
+    
+    public int hashCode(){
+        String ret = "";
+        for(int i=0; i<myWords.length; i++){
+            ret += myWords[i];
+            ret += " ";
+        }
+        ret = ret.trim();
+        return ret.hashCode();
+    }
 
     public boolean equals(Object o) {
         WordGram other = (WordGram) o;
