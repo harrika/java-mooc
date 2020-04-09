@@ -70,36 +70,36 @@ public class FirstRatings{
               // System.out.println("---------------------------------------------------");              
            // }
            //***************************num ratings for given rater id*****************************
-           // String ratidxx = "2";
-           // for (Rater zz: raterz) {
-                // if (zz.getID().equals(ratidxx)){ 
-                    // System.out.print("rater id: "+zz.getID()+"   ");
-                    // System.out.println("No. ratings: "+zz.numRatings());        
-                // }
-           // }     
+           String ratidxx = "193";
+           for (Rater zz: raterz) {
+                if (zz.getID().equals(ratidxx)){ 
+                    System.out.print("rater id: "+zz.getID()+" ===>  ");
+                    System.out.println("No. ratings: "+zz.numRatings());        
+                }
+           }     
            //***********************************rater id with maxmum ratings***********************
-           // int maxrats = 0;
-           // for (Rater zz: raterz) {
-               // if (zz.numRatings() > maxrats){
-                   // maxrats = zz.numRatings();                   
-               // }
-           // }
-           // for (Rater pp: raterz) {
-               // if (pp.numRatings() == maxrats){
-                   // System.out.print("maxrater: "+pp.getID()+"              ");
-                   // System.out.println("ratings: "+maxrats);                   
-               // }
-           // }           
+           int maxrats = 0;
+           for (Rater zz: raterz) {
+               if (zz.numRatings() > maxrats){
+                   maxrats = zz.numRatings();                   
+               }
+           }
+           for (Rater pp: raterz) {
+               if (pp.numRatings() == maxrats){
+                   System.out.print("maxrater: "+pp.getID()+"              ");
+                   System.out.println("ratings: "+maxrats);                   
+               }
+           }           
            //********************number of ratings for movie*********************
-           // int numraters = 0;
-           // String mvid = "1798709";
-           // for (Rater qq: raterz) {
-               // ArrayList<String> mvlst = qq.getItemsRated();
-               // if(mvlst.contains(mvid)){
-                   // numraters += 1;                
-                // }            
-            // }
-            // System.out.println("number of raters for "+mvid+" : "+numraters);
+           int numraters = 0;
+           String mvid = "1798709";
+           for (Rater qq: raterz) {
+               ArrayList<String> mvlst = qq.getItemsRated();
+               if(mvlst.contains(mvid)){
+                   numraters += 1;                
+                }            
+            }
+            System.out.println("number of raters for "+mvid+" : "+numraters);
             //**********************different movies rated********************************
             ArrayList<String> mother = new ArrayList<String>();
             for (Rater ss: raterz) {
@@ -124,7 +124,8 @@ public class FirstRatings{
          for (Movie mm: rmovlist) {             
              String gen = mm.getGenres();             
              String dr = mm.getDirector();
-             String[] drs = dr.split("\\s+");
+             String[] drs = dr.split(",");
+             //String[] drs = dr.split("\\s+");
              for (String drkt: drs) {
                  if (dmap.containsKey(drkt)){
                      int vv = dmap.get(drkt);
