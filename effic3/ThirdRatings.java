@@ -12,7 +12,7 @@ public class ThirdRatings {
     
     public ThirdRatings(String ratingsfile) {        
         FirstRatings fr = new FirstRatings();       
-        myRaters = fr. loadRaters(ratingsfile);        
+        myRaters = fr.loadRaters(ratingsfile);        
     }    
    
     public int getRaterSize(){
