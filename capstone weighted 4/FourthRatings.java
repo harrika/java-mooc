@@ -93,7 +93,7 @@ public ArrayList<Rating> getSimilarRatingsByFilter(String id,int numSimilarRater
                int min = 0;
                for (Rating rt: lstop){
                    String rterid = rt.getItem();                   
-                   Rater rter = RaterDatabase.getRater(id);
+                   Rater rter = RaterDatabase.getRater(rterid);
                    if (rter.getRating(mid) != -1){ //if rating for movie exists
                        double mrating = rter.getRating(mid);
                        double dp = rt.getValue();

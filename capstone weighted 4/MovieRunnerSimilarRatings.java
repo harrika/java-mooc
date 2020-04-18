@@ -40,46 +40,81 @@ public class MovieRunnerSimilarRatings  {
      public void printSimilarRatingsByGenre (){    
         FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
-        RaterDatabase.initialize("data/ratings.csv"); 
-        String genre = "Action";
-        ArrayList<Rating> rets = sr.getSimilarRatings("65",20,5);
+        RaterDatabase.initialize("data/ratings.csv");
+        GenreFilter fgenre = new  GenreFilter("Action");
+        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",20,5,fgenre);        
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
              String title = MovieDatabase.getTitle(mvid);  
-             String genres = MovieDatabase.getGenres(mvid);             
-             if (genres.contains(genre)){
+             String genres = MovieDatabase.getGenres(mvid);            
                  System.out.println(title+"    "+rating);
                  System.out.println(genres);
-                 System.out.println("--------------------------------------------------------------");
-             }
+                 System.out.println("--------------------------------------------------------------");             
         }    
-    }    
+    }  
     
     public void printSimilarRatingsByDirector (){    
         FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
-        RaterDatabase.initialize("data/ratings.csv"); 
-        //String drk = "Clint Eastwood,Sydney Pollack,David Cronenberg,Oliver Stone";
-        String drk1 = "Clint Eastwood";
-        String drk2 = "Sydney Pollack";
-        String drk3 = "David Cronenberg";
-        String drk4 = "Oliver Stone";        
-        ArrayList<Rating> rets = sr.getSimilarRatings("1034",10,3);        
+        RaterDatabase.initialize("data/ratings.csv");        
+     DirectorsFilter fdrkt = new  DirectorsFilter("Clint Eastwood,Sydney Pollack,David Cronenberg,Oliver Stone");
+        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("1034",10,3,fdrkt);        
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
-             String title = MovieDatabase.getTitle(mvid);                           
-             String drktors = MovieDatabase.getDirector(mvid);             
-         if (drktors.contains(drk1)||drktors.contains(drk2)||drktors.contains(drk3)||drktors.contains(drk4)){
+             String title = MovieDatabase.getTitle(mvid);  
+             String directors = MovieDatabase.getDirector(mvid);            
                  System.out.println(title+"    "+rating);
-                 System.out.println(drktors);
-                 System.out.println("--------------------------------------------------------------");
-         }    
-        }
-   }
-        
+                 System.out.println(directors);
+                 System.out.println("--------------------------------------------------------------");             
+        }    
+    }  
     
+    public void printSimilarRatingsByGenreAndMinutes (){    
+        FourthRatings  sr = new FourthRatings();       
+        MovieDatabase.initialize("ratedmoviesfull.csv");
+        RaterDatabase.initialize("data/ratings.csv");
+        GenreFilter fgenre = new  GenreFilter("Adventure");
+        MinutesFilter fminute = new MinutesFilter(100, 200);
+        AllFilters af = new AllFilters();
+        af.addFilter(fgenre);
+        af.addFilter(fminute);    
+        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",10,5,af);        
+        for (Rating ret: rets){
+             String mvid = ret.getItem(); 
+             double rating = ret.getValue();             
+             String title = MovieDatabase.getTitle(mvid);
+             String genres = MovieDatabase.getGenres(mvid);
+             int mins  = MovieDatabase.getMinutes(mvid);
+             System.out.println(title+"    "+mins+"     "+rating);
+             System.out.println(genres);
+             System.out.println("--------------------------------------------------------------");             
+        }    
+    }
+    
+    public void printSimilarRatingsByYearAfterAndMinutes (){    
+        FourthRatings  sr = new FourthRatings();       
+        MovieDatabase.initialize("ratedmoviesfull.csv");
+        RaterDatabase.initialize("data/ratings.csv");        
+        YearAfterFilter fyear = new  YearAfterFilter(2000);
+        MinutesFilter fminute = new MinutesFilter(80, 100);
+        AllFilters af = new AllFilters();
+        af.addFilter(fyear);
+        af.addFilter(fminute);    
+        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",10,5,af);
+        
+        for (Rating ret: rets){
+             String mvid = ret.getItem(); 
+             double rating = ret.getValue();             
+             String title = MovieDatabase.getTitle(mvid);             
+             int mins  = MovieDatabase.getMinutes(mvid);
+             int year  = MovieDatabase.getYear(mvid);             
+             System.out.println(title+"    "+year+"  "+mins+"     "+rating);
+             
+        }    
+    }    
+         
      public void printAverageRatingsByYearAfterAndGenre(){ 
         MovieDatabase mbase = new MovieDatabase();
         mbase.initialize("ratedmovies_short.csv");   
