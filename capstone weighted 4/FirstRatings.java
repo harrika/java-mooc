@@ -6,9 +6,9 @@ import org.apache.commons.csv.*;
 
 public class FirstRatings{      
     
-    public  ArrayList<Movie> loadMovies (String filocsv) {
+    public  ArrayList<Movie> loadMovies (String filename) {
         ArrayList<Movie> movlist = new ArrayList<Movie>();
-        FileResource fr = new FileResource(filocsv);
+        FileResource fr = new FileResource(filename);
         CSVParser parser = fr.getCSVParser();        
         for (CSVRecord rec : parser) {
             String id = rec.get("id");

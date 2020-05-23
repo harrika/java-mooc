@@ -2,11 +2,9 @@
 import java.util.*;
 
 public class ThirdRatings {
-    //private ArrayList<Movie> myMovies;
     private ArrayList<Rater> myRaters;
     
-    public ThirdRatings() {
-        // default constructor
+    public ThirdRatings() { // default constructor        
         this("data/ratings.csv");
     }
     

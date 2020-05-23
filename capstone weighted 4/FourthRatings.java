@@ -3,7 +3,7 @@ import java.util.*;
 
 public class FourthRatings { 
             
-    public double getAverageByID(String id, int minimalRaters){ //to copy over
+    public static double getAverageByID(String id, int minimalRaters){ //to copy over
         ArrayList<Double> ratings = new ArrayList<Double>();        
         for(Rater rter : RaterDatabase.getRaters()) {
             if (rter.getRating(id) != -1){ //rating for movie exists
@@ -21,7 +21,7 @@ public class FourthRatings {
         return 0.0;
     }
     
-    private double dotProduct(Rater me, Rater r){        
+    private static double dotProduct(Rater me, Rater r){        
         ArrayList<String> mitems = me.getItemsRated(); //get list of items from me
         double dotprod = 0;
         for (String item : mitems) {  //for each item in meitems
@@ -35,7 +35,7 @@ public class FourthRatings {
         return dotprod;         
     }
     
-      private ArrayList<Rating> getSimilarities(String id){ //id of rater to compare to others in dbase
+      private static ArrayList<Rating> getSimilarities(String id){ //id of rater to compare to others in dbase
           ArrayList<Rating> lst = new ArrayList<Rating>();                   
           ArrayList<Rater> myRaters = RaterDatabase.getRaters();
           Rater me = RaterDatabase.getRater(id);          
@@ -53,7 +53,7 @@ public class FourthRatings {
           return lst; // rater id me - [id1:5, id7:3, id3:1]
         }   
         
-        public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters){                            
+        public static ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters){                            
               ArrayList<Rating> simlist = getSimilarities(id);
               int ss = simlist.size();              
               List<Rating> lstop = simlist.subList(0,numSimilarRaters);
@@ -82,7 +82,7 @@ public class FourthRatings {
               return movratings;              
           }
      
-public ArrayList<Rating> getSimilarRatingsByFilter(String id,int numSimilarRaters,int minimalRaters,Filter f){                    
+public static ArrayList<Rating> getSimilarRatingsByFilter(String id,int numSimilarRaters,int minimalRaters,Filter f){                    
           ArrayList<Rating> simlist = getSimilarities(id);
           int ss = simlist.size();
           List<Rating> lstop = simlist.subList(0,numSimilarRaters); // *** are they sorted??          
@@ -125,7 +125,7 @@ public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter fil
       return retings;
 }
 
- public ArrayList<Rating> getAverageRatings(int minimalRaters){ //to copy over
+ public static ArrayList<Rating> getAverageRatings(int minimalRaters){ //to copy over
      ArrayList<Rating> retings = new ArrayList<Rating>(); 
      ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());         
      for (String id: movies) {             

@@ -5,30 +5,31 @@ public class MovieRunnerSimilarRatings  {
 
     public void printAverageRatings(){      
       //FourthRatings  sr = new FourthRatings("data/ratings_short.csv");
-      FourthRatings  sr = new FourthRatings();
+      //FourthRatings  sr = new FourthRatings();
       //int numraters = sr.getRaterSize();
-      MovieDatabase mbase = new MovieDatabase();      
-      mbase.initialize("ratedmovies_short.csv");      
+      //MovieDatabase mbase = new MovieDatabase();      
+      MovieDatabase.initialize("ratedmoviesfull.csv");  
+      
       //System.out.println("Number of raters: "+numraters);  
-      int numovies =  mbase.size();
+      int numovies =  MovieDatabase.size();
       System.out.println("Number of movies: "+numovies);   
-      ArrayList<Rating> rets =  sr.getAverageRatings(1);      
+      ArrayList<Rating> rets =  FourthRatings.getAverageRatings(1);      
       System.out.println("movies with ratings: "+ rets.size());
       
       Collections.sort(rets); //print average ratings
       for (Rating ret: rets){
           String iid = ret.getItem();         
-          String tit = mbase.getTitle(iid);
+          String tit = MovieDatabase.getTitle(iid);
           System.out.print(ret.getValue());
           System.out.println("   "+tit);
       }      
     }     
     
      public void printSimilarRatings (){    
-        FourthRatings  sr = new FourthRatings();       
+        //FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("data/ratings.csv"); 
-        ArrayList<Rating> rets = sr.getSimilarRatings("65",20,5);
+        ArrayList<Rating> rets = FourthRatings.getSimilarRatings("71",20,5);
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
@@ -38,11 +39,11 @@ public class MovieRunnerSimilarRatings  {
     }
     
      public void printSimilarRatingsByGenre (){    
-        FourthRatings  sr = new FourthRatings();       
+        //FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("data/ratings.csv");
-        GenreFilter fgenre = new  GenreFilter("Action");
-        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",20,5,fgenre);        
+        GenreFilter fgenre = new  GenreFilter("Mystery");
+        ArrayList<Rating> rets = FourthRatings.getSimilarRatingsByFilter("964",20,5,fgenre);        
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
@@ -58,8 +59,8 @@ public class MovieRunnerSimilarRatings  {
         FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("data/ratings.csv");        
-     DirectorsFilter fdrkt = new  DirectorsFilter("Clint Eastwood,Sydney Pollack,David Cronenberg,Oliver Stone");
-        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("1034",10,3,fdrkt);        
+     DirectorsFilter fdrkt = new  DirectorsFilter("Clint Eastwood,J.J. Abrams,Alfred Hitchcock,Sydney Pollack,David Cronenberg,Oliver Stone,Mike Leigh");
+        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("120",10,2,fdrkt);        
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
@@ -72,15 +73,15 @@ public class MovieRunnerSimilarRatings  {
     }  
     
     public void printSimilarRatingsByGenreAndMinutes (){    
-        FourthRatings  sr = new FourthRatings();       
+        //FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("data/ratings.csv");
-        GenreFilter fgenre = new  GenreFilter("Adventure");
-        MinutesFilter fminute = new MinutesFilter(100, 200);
+        GenreFilter fgenre = new  GenreFilter("Drama");
+        MinutesFilter fminute = new MinutesFilter(80, 160);
         AllFilters af = new AllFilters();
         af.addFilter(fgenre);
         af.addFilter(fminute);    
-        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",10,5,af);        
+        ArrayList<Rating> rets = FourthRatings.getSimilarRatingsByFilter("168",10,3,af);        
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
              double rating = ret.getValue();             
@@ -94,15 +95,15 @@ public class MovieRunnerSimilarRatings  {
     }
     
     public void printSimilarRatingsByYearAfterAndMinutes (){    
-        FourthRatings  sr = new FourthRatings();       
+        //FourthRatings  sr = new FourthRatings();       
         MovieDatabase.initialize("ratedmoviesfull.csv");
         RaterDatabase.initialize("data/ratings.csv");        
-        YearAfterFilter fyear = new  YearAfterFilter(2000);
-        MinutesFilter fminute = new MinutesFilter(80, 100);
+        YearAfterFilter fyear = new  YearAfterFilter(1975);
+        MinutesFilter fminute = new MinutesFilter(70, 200);
         AllFilters af = new AllFilters();
         af.addFilter(fyear);
         af.addFilter(fminute);    
-        ArrayList<Rating> rets = sr.getSimilarRatingsByFilter("65",10,5,af);
+        ArrayList<Rating> rets = FourthRatings.getSimilarRatingsByFilter("314",10,5,af);
         
         for (Rating ret: rets){
              String mvid = ret.getItem(); 
